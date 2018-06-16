@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>2</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var string = 'foo.bar=51ec288910b27bb92b9067a409fc1425';
+		// var string = 'this.is.my.first.app=12';
+
+		function f2(string){
+			bracketsCount = 0;
+			string = string.replace(/\"/g,"");
+			string = string.replace(/\./g,"\":");
+			string = string.replace(/\:/g,":{\"");
+			string = string.replace("=","\":\"");
+
+			string += "\"}";
+
+			for (var i = 0; i < string.length; i++) {
+				if(string[i] == "{"){
+					string += "}";
+
+				}
+			}
+
+			string = "{\"" + string;			
+			
+			return JSON.parse(string);
+		}
+		console.log(f2(string));
+	</script>
+</body>
+</html>
